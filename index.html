@@ -1,1 +1,191 @@
-helloworld
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="Description" content=""/>
+	<meta name="keywords" content=""/>
+	<title>肖娇艳 的微名片</title>
+    <!--<link rel="stylesheet" type="text/css" href="/themes/default/public/css/mui.min.css">
+<link rel="stylesheet" type="text/css" href="/themes/default/public/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/themes/default/public/css/style.css">
+<script type="text/javascript" src="/themes/default/public/js/rem.js"></script>-->
+    <script src="/themes/default/public/js/rem_2.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="/themes/default/public/css/card.css"/>
+</head>
+<body style="height:150%;">
+
+<div class="container">
+    <div class="audioo">
+        <audio src="http://old.haolingsheng.com/download/ring/000/100/da8f20d36c0cb651471d1bf332852a66.mp3" id='audio'></audio>
+    </div>
+	<img class="top-avatar" src="http://zhjten.cnduomi.com/upload/avatar/20190722/8d3151c6e86b4392c28839771bdc7db2.jpeg"/>
+	<div class="card-wrap">
+		<img class="bg-mark" src="/themes/default/public/img/card/bg-mark.png"/>
+		<div class="card-cont">
+			<h2 class="card-name">陈柳在 <span>副总</span></h2>
+			<p class="card-company">深圳市汕尾食品有限公司</p>
+			<ul class="info-list">
+				<li>
+					<img class="list-icon" src="/themes/default/public/img/card/icon-tel.png"/> 电话：13682605277				</li>
+				<li>
+					<img class="list-icon" src="/themes/default/public/img/card/icon-phone.png"/> 座机：27069902				</li>
+				<li>
+					<img class="list-icon" src="/themes/default/public/img/card/icon-email.png"/> 邮箱：425929886@qq.com				</li>
+				<li>
+					<img class="list-icon" src="/themes/default/public/img/card/icon-place.png"/> 地址：深圳市宝安区松岗街道潭头西部工业区52-53栋				</li>
+			</ul>
+			<img class="icon-arrow" src="/themes/default/public/img/card/icon-arrow.png"/>
+			<ul class="icon-list clear">
+				                    <li>
+											<a href="/portal/index/some/nid/1.html">
+							                        <img src="/themes/default/public/img/card/icon1.png"/>
+                        <span>荣誉证书</span>
+					</a>
+                    </li>
+				                    <li>
+															<a href="/portal/index/one/nid/2.html">
+											                        <img src="/themes/default/public/img/card/icon1.png"/>
+                        <span>招聘海报</span>
+					</a>
+                    </li>
+				                    <li>
+																<a href="tel:13682605277">
+					                        <img src="/themes/default/public/img/card/icon1.png"/>
+                        <span>联系我们</span>
+					</a>
+                    </li>
+				                    <li>
+												<a href="/portal/index/one/nid/5.html">
+								                        <img src="/themes/default/public/img/card/icon1.png"/>
+                        <span>团队风采</span>
+					</a>
+                    </li>
+							</ul>
+		</div>
+	</div>
+
+	<!--banner-->
+	<div class="banner"></div>
+
+
+    <!--底部导航-->
+	<div class="botnav-height"></div>
+	<div class="bot-nav clear">
+		<div class="bot-avatar">
+			<img src="http://zhjten.cnduomi.com/upload/avatar/20190722/8d3151c6e86b4392c28839771bdc7db2.jpeg"/>
+		</div>
+		<a href="tel:13682605277">
+			<img src="/themes/default/public/img/card/tab1.png"/>
+			<span>打电话</span>
+		</a>
+		<a href="sms:13682605277">
+			<img src="/themes/default/public/img/card/tab2.png"/>
+			<span>发短信</span>
+		</a>
+		<a href="javascript:;" class="rc">
+			<img src="/themes/default/public/img/card/tab3.png"/>
+			<span>添加通讯录</span>
+		</a>
+		<a target="_blank" href="">
+			<img src="/themes/default/public/img/card/tab4.png"/>
+			<span>商城</span>
+		</a>
+	</div>
+	<!--底部导航-end-->
+
+</div>
+<script type="text/javascript" src='/themes/default/public/js/mui.min.js'></script>
+<script type="text/javascript" src='/themes/default/public/js/jquery-2.1.4.min.js'></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        var myAuto = document.getElementById('audio');
+        myAuto.play();
+        $('.audioo').addClass('audioo_ac');
+    })
+    var off=0;
+    $('.audioo').click(function(){
+        var myAuto = document.getElementById('audio');
+        off++;
+        if(off%2==1){
+            myAuto.pause();
+            $('.audioo').removeClass('audioo_ac');
+        }else{
+            myAuto.play();
+            $('.audioo').addClass('audioo_ac');
+        }
+    })
+
+
+
+    var i=0;
+    $(window).scroll(function(){
+        if($(window).scrollTop() >= 88 && i==0){
+            //异步加载
+            i++;
+            $.post("/portal/index/getcontent.html",
+                    {cid:1},
+            function(result){
+                if(result.code>0){
+                    var html = '';
+                    $('.banner').html(result.data.content+result.data.content2);
+
+                }
+            }
+        );
+        }
+    });
+
+
+</script>
+<script>
+    //alert(location.href.split('#')[0]);
+    //配置微信信息
+    wx.config ({
+        debug : false,    // true:调试时候弹窗
+        appId: 'wx37cf65710b40eeeb',
+        timestamp: '1566303803',
+        nonceStr: 'wwchznBmm8sGuFL7',
+        signature: 'e7d79659146d5d725382921f59bb01b9fb5b7d60' ,
+        jsApiList : [
+            // 所有要调用的 API 都要加到这个列表中
+            'onMenuShareTimeline',       // 分享到朋友圈接口
+            'onMenuShareAppMessage',  //  分享到朋友接口
+        ]
+    });
+    wx.ready(function(){
+        //使用getLocation接口获取地理位置坐标
+        wx.checkJsApi({
+            jsApiList: [
+            ],
+            success: function (res) {
+                if (res.checkResult.getLocation == false) {
+                    alert('你的微信版本太低，不支持微信JS接口，请升级到最新的微信版本！');
+                    return;
+                }
+            }
+        });
+
+        var domain = document.domain;
+        wx.onMenuShareTimeline({
+            title: '肖娇艳 的微名片', // 分享标题
+            link:"http://"+domain+"/portal/index/index/u/"+2851,
+            imgUrl: "", // 分享图标 /statics/default/img/zt-2.png
+
+        });
+        // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+        wx.onMenuShareAppMessage({
+            title: '肖娇艳 的微名片', // 分享标题
+            desc: "你好，这是我的微名片，多多关照", // 分享描述
+            link:"http://"+domain+"/portal/index/index/u/"+2851,
+            imgUrl: "", // 分享图标
+            type: 'link', // 分享类型,music、video或link，不填默认为link
+
+        });
+    });
+</script>
+</body>
+</html>
